@@ -270,13 +270,13 @@ FHitResult ARosettaCharacter::GetFirstPhysicsBodyInReach() const
 
 void ARosettaCharacter::UpdateDictionary(FString OriginalWord, FString NewTranslation)
 {
-	if (Dictionary.Contains(OriginalWord))
+	if (ARosettaCharacter::GetDictionary().Contains(OriginalWord))
 	{
-		Dictionary[OriginalWord] = NewTranslation;
+		ARosettaCharacter::GetDictionary()[OriginalWord] = NewTranslation;
 	}
 	else
 	{
-		Dictionary.Add(OriginalWord, NewTranslation);
+		ARosettaCharacter::GetDictionary().Add(OriginalWord, NewTranslation);
 	}
 }
 
