@@ -1,0 +1,17 @@
+{
+    "FileVersion": 3,
+    
+	"FriendlyName": "Rosetta Tests",
+    "Version": 1,
+    "VersionName": "1.0.0",
+    "Description": "Automation tests for Rosetta.",
+    "Category": "Testing",
+    "CreatedBy": "Hugo Pelletier",
+
+    "Modules": [
+        {
+            "Name": "RosettaTests",
+            "Type": "Developer"
+        }
+    ]
+}
