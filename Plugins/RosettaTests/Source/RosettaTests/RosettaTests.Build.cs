@@ -7,15 +7,11 @@ public class RosettaTests : ModuleRules
         PrivateIncludePaths.AddRange(new string[] { "RosettaTests/Private" });
         PublicIncludePaths.AddRange(new string[] { "RosettaTests/Public" });
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-
-        PublicDependencyModuleNames.AddRange(new string[] { "Engine", "Core" });
-
-        //PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-        //PrivateDependencyModuleNames.AddRange(new string[] {
-        //    "Core",
-        //    "Engine",
-        //    "CoreUObject",
-        //    "Rosetta"
-        //});
+        PrivateDependencyModuleNames.AddRange(new string[] {
+            "Core",
+            "Engine",
+            "CoreUObject",
+            "Rosetta"
+        });
     }
 }
