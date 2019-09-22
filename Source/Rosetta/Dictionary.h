@@ -17,11 +17,27 @@ class ROSETTA_API UDictionary : public UObject
 private:
 	TArray<struct FDictionaryEntry*> Entries;
 
-	bool IsIndexInRange(int Index);
+	bool IsIndexInRange(int Index) const;
 
 public:
 	int GetEntriesCount() const;
-	FDictionaryEntry* GetEntry(int Index);
+	int GetEntryIndex(FString Original) const;
+	FDictionaryEntry* GetEntry(int Index) const;
+	FDictionaryEntry* GetEntry(FString Original) const;
 	void DeleteEntry(int Index);
-	void AddEntry(FString Original, FString Translation = "");
+
+	/**
+	 * Checks if the entry currently exists. If not, adds a new entry
+	 * @returns: whether or not addition was succesful
+	 */
+	bool AddEntry(FString Original, FString Translation = "");
+
+	void UpdateEntryTranslation(int Index, FString NewTranslation);
+
+	/**
+	 * Updates an entry's original word, if there's no entry currently associated with it. 
+	 * If this fails, you should try to fuse the entries 
+	 * @returns: whether or not the update was successful
+	 */
+	bool UpdateEntryOriginal(int Index, FString NewOriginal);
 };
