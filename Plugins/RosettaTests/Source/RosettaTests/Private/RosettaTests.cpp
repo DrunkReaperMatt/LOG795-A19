@@ -1,11 +1,4 @@
 #include "RosettaTests.h"
+#include "Modules/ModuleManager.h"
 
-void RosettaTestsImpl::StartupModule()
-{
-}
-
-void RosettaTestsImpl::ShutdownModule()
-{
-}
-
-IMPLEMENT_MODULE(RosettaTestsImpl, RosettaTests)
+IMPLEMENT_MODULE(FDefaultModuleImpl, RosettaTests);

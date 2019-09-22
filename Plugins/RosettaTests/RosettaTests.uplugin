@@ -7,11 +7,14 @@
     "Description": "Automation tests for Rosetta.",
     "Category": "Testing",
     "CreatedBy": "Hugo Pelletier",
+    "CanContainContent": true,
+    "Installed": false,
 
     "Modules": [
         {
             "Name": "RosettaTests",
-            "Type": "Developer"
+            "Type": "Developer",
+			"LoadingPhase": "Default"
         }
     ]
 }
