@@ -21,6 +21,7 @@ private:
 
 public:
 	int GetEntriesCount() const;
+	bool Contains(FString Original) const;
 	int GetEntryIndex(FString Original) const;
 	FDictionaryEntry* GetEntry(int Index) const;
 	FDictionaryEntry* GetEntry(FString Original) const;
@@ -33,6 +34,7 @@ public:
 	bool AddEntry(FString Original, FString Translation = "");
 
 	void UpdateEntryTranslation(int Index, FString NewTranslation);
+	void UpdateEntryTranslation(FString Original, FString Translation);
 
 	/**
 	 * Updates an entry's original word, if there's no entry currently associated with it. 

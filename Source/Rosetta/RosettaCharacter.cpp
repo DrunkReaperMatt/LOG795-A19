@@ -12,6 +12,7 @@
 #include "DrawDebugHelpers.h"
 #include <Kismet/GameplayStatics.h>
 #include "Engine.h"
+#include "Dictionary.h"
 
 #define OUT
 
@@ -268,19 +269,14 @@ FHitResult ARosettaCharacter::GetFirstPhysicsBodyInReach() const
 	return HitResult;
 }
 
-void ARosettaCharacter::UpdateDictionary(FString OriginalWord, FString NewTranslation)
+void ARosettaCharacter::BeginPlay()
 {
-	if (Dictionary.Contains(OriginalWord))
-	{
-		Dictionary[OriginalWord] = NewTranslation;
-	}
-	else
-	{
-		Dictionary.Add(OriginalWord, NewTranslation);
-	}
+	Super::BeginPlay();
+
+	Dictionary = NewObject<UDictionary>();
 }
 
-TMap<FString, FString> ARosettaCharacter::GetDictionary()
+UDictionary* ARosettaCharacter::GetDictionary()
 {
 	return Dictionary;
 }

@@ -20,6 +20,11 @@ int UDictionary::GetEntriesCount() const
 	return Entries.Num();
 }
 
+bool UDictionary::Contains(FString Original) const
+{
+	return UDictionary::GetEntry(Original) != nullptr;
+}
+
 int UDictionary::GetEntryIndex(FString Original) const
 {
 	for (int i = 0; i < Entries.Num(); i++)
@@ -63,7 +68,7 @@ void UDictionary::DeleteEntry(int Index)
 
 bool UDictionary::AddEntry(FString Original, FString Translation)
 {
-	if (UDictionary::GetEntry(Original) == nullptr)
+	if (!UDictionary::Contains(Original))
 	{
 		FDictionaryEntry* NewEntry = new FDictionaryEntry(Original, Translation);
 		Entries.Add(NewEntry);
@@ -77,9 +82,14 @@ void UDictionary::UpdateEntryTranslation(int Index, FString NewTranslation)
 	UDictionary::GetEntry(Index)->SetTranslation(NewTranslation);
 }
 
+void UDictionary::UpdateEntryTranslation(FString Original, FString NewTranslation)
+{
+	UDictionary::UpdateEntryTranslation(UDictionary::GetEntryIndex(Original), NewTranslation);
+}
+
 bool UDictionary::UpdateEntryOriginal(int Index, FString NewOriginal)
 {
-	if (UDictionary::GetEntry(NewOriginal) == nullptr)
+	if (UDictionary::Contains(NewOriginal))
 	{
 		UDictionary::GetEntry(Index)->SetOriginal(NewOriginal);
 		return true;

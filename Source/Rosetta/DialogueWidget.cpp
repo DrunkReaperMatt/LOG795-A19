@@ -9,6 +9,8 @@
 #include "DialogueWordWidget.h"
 #include "Components/HorizontalBoxSlot.h"
 #include "RosettaCharacter.h"
+#include "Dictionary.h"
+#include "DictionaryEntry.h"
 
 UDialogueWidget::UDialogueWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -65,12 +67,17 @@ void UDialogueWidget::GenerateWordWidgets(FString Sentence)
 		DWW->UpdateOriginal(Word);
 		if (Player)
 		{
-			if (!Player->GetDictionary().Contains(Word))
+			UDictionary* Dict = Player->GetDictionary();
+			if (!Dict->Contains(Word))
 			{
-				UDialogueWidget::UpdateDictionary(Word, Word);
+				Dict->AddEntry(Word, Word);
 			}
+			else
+			{
+				DWW->UpdateTranslation(Dict->GetEntry(Word)->GetTranslation());
+			}
+			DWW->UpdateTranslation(Dict->GetEntry(Word)->GetTranslation());
 
-			DWW->UpdateTranslation(Player->GetDictionary()[Word]);
 		}
 
 		FSlateChildSize Size = FSlateChildSize(ESlateSizeRule::Fill);
@@ -215,5 +222,5 @@ void UDialogueWidget::CloseWidget()
 
 void UDialogueWidget::UpdateDictionary(FString OriginalWord, FString NewTranslation)
 {
-	Player->UpdateDictionary(OriginalWord, NewTranslation);
+	Player->GetDictionary()->UpdateEntryTranslation(OriginalWord, NewTranslation);
 }
