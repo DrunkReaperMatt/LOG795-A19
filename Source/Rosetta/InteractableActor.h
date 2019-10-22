@@ -26,7 +26,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void Interact() { check(0 && "You must override this"); }
-	void SetInteractionIconVisibility(bool bIsVisible) ;
+	void SetInteractionIconVisibility(bool bIsVisible) const;
 
 	UFUNCTION(BlueprintCallable, Category="Text")
 	virtual FText GetActionDescription() { check(0 && "You must override this"); return FText(); }

@@ -2,7 +2,6 @@
 
 
 #include "InteractionIcon.h"
-#include <Engine/Engine.h>
 
 void UInteractionIcon::SetInteractionDescription(const FText ActionDescription)
 {

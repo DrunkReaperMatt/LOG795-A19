@@ -48,7 +48,7 @@ void AInteractableActor::Tick(float DeltaTime)
 	}
 }
 
-void AInteractableActor::SetInteractionIconVisibility(bool bIsVisible) 
+void AInteractableActor::SetInteractionIconVisibility(bool bIsVisible) const
 {
 	if (InteractionIcon)
 	{
