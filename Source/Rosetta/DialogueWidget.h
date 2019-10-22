@@ -38,6 +38,8 @@ class ROSETTA_API UDialogueWidget : public UUserWidget
 
 	bool CompareResponse();
 
+	bool ResponseHasNumber();
+
 	void CloseWidget();
 
 	UPROPERTY(meta = (BindWidget))
@@ -49,9 +51,29 @@ class ROSETTA_API UDialogueWidget : public UUserWidget
 	UPROPERTY()
 	TSubclassOf<class UUserWidget> DWWClass;
 
-	FString DialogueIntroLine = "Hey you! What color is the asdfgga over there ?";
-	FString DialogueResponseGood = "Great! I love me a red asdfgga";
-	FString DialogueResponseBad = "Hmm, that doesn't seem right";
+	//FString DialogueIntroLine = "Hello there , stranger !";
+	//FString DialogueIntroLine2 = "I am blind , and so I cannot count how many buildings";
+	//FString DialogueIntroLine3 = "are in town . Could you count them for me ?";
+	//FString DialogueResponseGood = "Thirteen ? Wow , that is a lot of buildings ! Thank you for your help .";
+	//FString DialogueResponseBad = "I am sorry , but I did not understand what you said .";
+	//FString DialogueResponseBadNumber = "Hmm , I seem to recall a different number .";
+	//FString DialogueResponseBadNumber2 = "Could you count again , pretty please ?";
+
+	FString DialogueIntroLine = "Grany jweeb , olgada !";
+	FString DialogueIntroLine2 = "A zu nasee , iko meh A pandu jojo wa saba kischmet";
+	FString DialogueIntroLine3 = "sont nepi mantra . Kozo jula miki jojo jubus tom Da ?";
+	FString DialogueResponseGood = "Zvari ? Wow , juba ze ma hünt uve kischmet ! Kula jula lep julan jimji .";
+	FString DialogueResponseBad = "A zu ouchi , buta A hua du undami kime jula wawa .";
+	FString DialogueResponseBadNumber = "Hmm , A qual ku mul e vuruzu zvarma .";
+	FString DialogueResponseBadNumber2 = "Kozo jula jojo luis , jibi miki ?";
+
+	//FString DialogueIntroLine = "Hello there , olgada !";
+	//FString DialogueIntroLine2 = "I am blind , and so I cannot jojo how many kischmet";
+	//FString DialogueIntroLine3 = "sont in town . Could jula please jojo them for Da ?";
+	//FString DialogueResponseGood = "Zvari ? Wow , that is a hünt of kischmet ! Kula jula for your jimji .";
+	//FString DialogueResponseBad = "I am ouchi , but I did not undami kime you said .";
+	//FString DialogueResponseBadNumber = "Hmm , I seem ku recall a different zvarma .";
+	//FString DialogueResponseBadNumber2 = "Could jula jojo again , pretty please ?";
 
 	int DialogueStep;
 	

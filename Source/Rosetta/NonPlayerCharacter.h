@@ -20,4 +20,7 @@ class ROSETTA_API ANonPlayerCharacter : public AInteractableActor
 	TSubclassOf<class UUserWidget> DWClass;
 	
 	virtual void Interact() override;
+
+	//UFUNCTION(BlueprintGetter)
+	virtual FText GetActionDescription() override;
 };

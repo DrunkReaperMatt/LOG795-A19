@@ -95,21 +95,42 @@ void UDialogueWidget::OkayPressed()
 	switch (DialogueStep)
 	{
 		case 1:
+			UDialogueWidget::GenerateWordWidgets(DialogueIntroLine2);
+			break;
+		case 2:
+			UDialogueWidget::GenerateWordWidgets(DialogueIntroLine3);
+			break;
+		case 3:
 			// set up input
 			UDialogueWidget::ActivateResponse();
 			break;
-		case 2:
-			// true if the response was "red"
+		case 4:
+			// true if the response was "13", "thirteen" or "zvari"
+			ResponseInput->SetVisibility(ESlateVisibility::Hidden);
 			if (UDialogueWidget::CompareResponse())
 			{
 				UDialogueWidget::GenerateWordWidgets(DialogueResponseGood);
+			}
+			else if (UDialogueWidget::ResponseHasNumber())
+			{
+				UDialogueWidget::GenerateWordWidgets(DialogueResponseBadNumber);
 			}
 			else
 			{
 				UDialogueWidget::GenerateWordWidgets(DialogueResponseBad);
 			}
 			break;
-		case 3:
+		case 5:
+			if (UDialogueWidget::ResponseHasNumber() && !UDialogueWidget::CompareResponse())
+			{
+				UDialogueWidget::GenerateWordWidgets(DialogueResponseBadNumber2);
+			}
+			else
+			{
+				UDialogueWidget::CloseWidget();
+			}
+			break;
+		case 6:
 			UDialogueWidget::CloseWidget();
 			break;
 	}
@@ -126,14 +147,51 @@ void UDialogueWidget::DeactivateResponse(const FText& InText, ETextCommit::Type 
 {
 	if (InCommitType == ETextCommit::OnEnter)
 	{
-		ResponseInput->SetVisibility(ESlateVisibility::Hidden);
+		//ResponseInput->SetVisibility(ESlateVisibility::Hidden);
 		UDialogueWidget::OkayPressed();
 	}
 }
 
 bool UDialogueWidget::CompareResponse()
 {
-	if (ResponseInput->GetText().EqualToCaseIgnored(FText::FromString("red")))
+	FString s = ResponseInput->GetText().ToString();
+	
+	if (s.Contains("13") || s.Contains("thirteen") || s.Contains("zvari"))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool UDialogueWidget::ResponseHasNumber()
+{
+	FString s = ResponseInput->GetText().ToString();
+	if (
+		s.Contains("0") || s.Contains("zero") ||
+		s.Contains("1") || s.Contains("one") ||
+		s.Contains("2") || s.Contains("two") ||
+		s.Contains("3") || s.Contains("three") ||
+		s.Contains("4") || s.Contains("four") ||
+		s.Contains("5") || s.Contains("five") ||
+		s.Contains("6") || s.Contains("six") ||
+		s.Contains("7") || s.Contains("seven") ||
+		s.Contains("8") || s.Contains("eight") ||
+		s.Contains("9") || s.Contains("nine") ||
+		s.Contains("10") || s.Contains("ten") ||
+		s.Contains("11") || s.Contains("eleven") ||
+		s.Contains("12") || s.Contains("twelve") ||
+		s.Contains("13") || s.Contains("thirteen") || s.Contains("zvari") ||
+		s.Contains("14") || s.Contains("fourteen") ||
+		s.Contains("15") || s.Contains("fifteen") ||
+		s.Contains("16") || s.Contains("sixteen") ||
+		s.Contains("17") || s.Contains("seventeen") ||
+		s.Contains("18") || s.Contains("eighteen") ||
+		s.Contains("19") || s.Contains("nineteen") ||
+		s.Contains("20") || s.Contains("twenty")
+		)
 	{
 		return true;
 	}

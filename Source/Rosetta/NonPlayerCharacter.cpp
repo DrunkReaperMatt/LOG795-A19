@@ -20,3 +20,8 @@ void ANonPlayerCharacter::Interact()
 
 	DialogueWidget->AddToViewport();
 }
+
+FText ANonPlayerCharacter::GetActionDescription()
+{
+	return FText::FromString("talk");
+}

@@ -98,6 +98,7 @@ private:
 	TMap<FString, FString> Dictionary;
 
 public:
+
 	void UpdateDictionary(FString OriginalWord, FString NewTranslation);
 	TMap<FString, FString> GetDictionary();
 };

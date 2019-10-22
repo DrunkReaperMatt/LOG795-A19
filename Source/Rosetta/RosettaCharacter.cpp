@@ -255,7 +255,7 @@ FHitResult ARosettaCharacter::GetFirstPhysicsBodyInReach() const
 	FHitResult HitResult;
 	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
 
-	DrawDebugLine(GetWorld(), GetReachLineStart(), GetReachLineEnd(), FColor::Green, false, 1, 0, 1);
+	//DrawDebugLine(GetWorld(), GetReachLineStart(), GetReachLineEnd(), FColor::Green, false, 1, 0, 1);
 
 	GetWorld()->LineTraceSingleByChannel(
 		OUT HitResult,

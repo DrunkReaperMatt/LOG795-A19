@@ -25,4 +25,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void Interact() override;
+
+	//UFUNCTION(BlueprintGetter)
+	virtual FText GetActionDescription() override;
 };
