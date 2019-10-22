@@ -3,6 +3,7 @@
 
 #include "DictionaryItem.h"
 #include "RosettaCharacter.h"
+#include "Dictionary.h"
 
 #include <Engine/Engine.h>
 
@@ -30,53 +31,53 @@ void ADictionaryItem::Tick(float DeltaTime)
 
 void ADictionaryItem::Interact()
 {
-	Player->UpdateDictionary("Grany", "Hello");
-	Player->UpdateDictionary("jweeb", "there");
-	//Player->UpdateDictionary(("olgada", "stranger");
-	Player->UpdateDictionary("A", "I");
-	Player->UpdateDictionary("zu", "am");
-	Player->UpdateDictionary("nasee", "blind");
-	Player->UpdateDictionary("iko", "and");
-	Player->UpdateDictionary("meh", "so");
-	Player->UpdateDictionary("pandu", "cannot");
-	//Player->UpdateDictionary(("jojo", "count");
-	Player->UpdateDictionary("wa", "how");
-	Player->UpdateDictionary("saba", "many");
-	Player->UpdateDictionary("kischmet", "buildings");
-	Player->UpdateDictionary("sont", "are");
-	Player->UpdateDictionary("nepi", "in");
-	Player->UpdateDictionary("mantra", "town");
-	Player->UpdateDictionary("Kozo", "Could");
-	//Player->UpdateDictionary(("jula", "you");
-	Player->UpdateDictionary("miki", "please");
-	Player->UpdateDictionary("jubus", "them");
-	Player->UpdateDictionary("tom", "for");
-	//Player->UpdateDictionary(("Da", "me");
-	//Player->UpdateDictionary(("Zvari", "Thirteen");
-	Player->UpdateDictionary("juba", "that");
-	Player->UpdateDictionary("ze", "is");
-	Player->UpdateDictionary("ma", "a");
-	Player->UpdateDictionary("hünt", "lot");
-	Player->UpdateDictionary("uve", "of");
+	Player->GetDictionary()->AddEntry("Grany", "Hello");
+	Player->GetDictionary()->AddEntry("jweeb", "there");
+	//Player->GetDictionary()->AddEntry(("olgada", "stranger");
+	Player->GetDictionary()->AddEntry("A", "I");
+	Player->GetDictionary()->AddEntry("zu", "am");
+	Player->GetDictionary()->AddEntry("nasee", "blind");
+	Player->GetDictionary()->AddEntry("iko", "and");
+	Player->GetDictionary()->AddEntry("meh", "so");
+	Player->GetDictionary()->AddEntry("pandu", "cannot");
+	//Player->GetDictionary()->AddEntry(("jojo", "count");
+	Player->GetDictionary()->AddEntry("wa", "how");
+	Player->GetDictionary()->AddEntry("saba", "many");
+	Player->GetDictionary()->AddEntry("kischmet", "buildings");
+	Player->GetDictionary()->AddEntry("sont", "are");
+	Player->GetDictionary()->AddEntry("nepi", "in");
+	Player->GetDictionary()->AddEntry("mantra", "town");
+	Player->GetDictionary()->AddEntry("Kozo", "Could");
+	//Player->GetDictionary()->AddEntry(("jula", "you");
+	Player->GetDictionary()->AddEntry("miki", "please");
+	Player->GetDictionary()->AddEntry("jubus", "them");
+	Player->GetDictionary()->AddEntry("tom", "for");
+	//Player->GetDictionary()->AddEntry(("Da", "me");
+	//Player->GetDictionary()->AddEntry(("Zvari", "Thirteen");
+	Player->GetDictionary()->AddEntry("juba", "that");
+	Player->GetDictionary()->AddEntry("ze", "is");
+	Player->GetDictionary()->AddEntry("ma", "a");
+	Player->GetDictionary()->AddEntry("hünt", "lot");
+	Player->GetDictionary()->AddEntry("uve", "of");
 	//Player->Dictionary.Ad(("Kula", "Thank");
-	Player->UpdateDictionary("lep", "for");
-	Player->UpdateDictionary("julan", "your");
-	Player->UpdateDictionary("jimji", "help");
-	//Player->UpdateDictionary(("ouchi", "sorry");
-	Player->UpdateDictionary("buta", "but");
-	Player->UpdateDictionary("hua", "did");
-	Player->UpdateDictionary("du", "not");
-	Player->UpdateDictionary("undami", "understand");
-	//Player->UpdateDictionary(("kime", "what");
-	Player->UpdateDictionary("wawa", "said");
-	Player->UpdateDictionary("qual", "seem");
-	Player->UpdateDictionary("ku", "to");
-	Player->UpdateDictionary("mul", "recall");
-	Player->UpdateDictionary("e", "a");
-	Player->UpdateDictionary("vuruzu", "different");
-	Player->UpdateDictionary("zvarma", "number");
-	Player->UpdateDictionary("luis", "again");
-	Player->UpdateDictionary("jibi", "pretty");
+	Player->GetDictionary()->AddEntry("lep", "for");
+	Player->GetDictionary()->AddEntry("julan", "your");
+	Player->GetDictionary()->AddEntry("jimji", "help");
+	//Player->GetDictionary()->AddEntry(("ouchi", "sorry");
+	Player->GetDictionary()->AddEntry("buta", "but");
+	Player->GetDictionary()->AddEntry("hua", "did");
+	Player->GetDictionary()->AddEntry("du", "not");
+	Player->GetDictionary()->AddEntry("undami", "understand");
+	//Player->GetDictionary()->AddEntry(("kime", "what");
+	Player->GetDictionary()->AddEntry("wawa", "said");
+	Player->GetDictionary()->AddEntry("qual", "seem");
+	Player->GetDictionary()->AddEntry("ku", "to");
+	Player->GetDictionary()->AddEntry("mul", "recall");
+	Player->GetDictionary()->AddEntry("e", "a");
+	Player->GetDictionary()->AddEntry("vuruzu", "different");
+	Player->GetDictionary()->AddEntry("zvarma", "number");
+	Player->GetDictionary()->AddEntry("luis", "again");
+	Player->GetDictionary()->AddEntry("jibi", "pretty");
 	Destroy();
 }
 
