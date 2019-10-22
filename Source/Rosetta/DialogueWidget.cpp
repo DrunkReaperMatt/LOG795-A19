@@ -61,25 +61,18 @@ void UDialogueWidget::GenerateWordWidgets(FString Sentence)
 
 	for (FString Word : Words)
 	{
+		// Create DWW
 		UDialogueWordWidget* DWW = CreateWidget<UDialogueWordWidget>(GetWorld(), DWWClass);
-		DWW->SetParentWidget(this);
-
-		DWW->UpdateOriginal(Word);
 		if (Player)
 		{
-			UDictionary* Dict = Player->GetDictionary();
-			if (!Dict->Contains(Word))
-			{
-				Dict->AddEntry(Word, Word);
-			}
-			else
-			{
-				DWW->UpdateTranslation(Dict->GetEntry(Word)->GetTranslation());
-			}
-			DWW->UpdateTranslation(Dict->GetEntry(Word)->GetTranslation());
-
+			DWW->Setup(this, Player->GetDictionary(), Word);
+		}
+		else
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("No player found on DialogueWidget"));
 		}
 
+		// Set DWW size and position
 		FSlateChildSize Size = FSlateChildSize(ESlateSizeRule::Fill);
 		WordsPanel->AddChild(DWW);
 		UHorizontalBoxSlot* HBoxSlot = Cast<UHorizontalBoxSlot>(DWW->Slot);
@@ -218,9 +211,4 @@ void UDialogueWidget::CloseWidget()
 
 	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Yellow, TEXT("Widget closed"));
 	RemoveFromParent();
-}
-
-void UDialogueWidget::UpdateDictionary(FString OriginalWord, FString NewTranslation)
-{
-	Player->GetDictionary()->UpdateEntryTranslation(OriginalWord, NewTranslation);
 }

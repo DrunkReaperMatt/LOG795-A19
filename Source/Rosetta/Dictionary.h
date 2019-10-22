@@ -33,6 +33,8 @@ public:
 	 */
 	bool AddEntry(FString Original, FString Translation = "");
 
+	void ReplaceEntry(FString Original, FString Translation = "");
+
 	void UpdateEntryTranslation(int Index, FString NewTranslation);
 	void UpdateEntryTranslation(FString Original, FString Translation);
 

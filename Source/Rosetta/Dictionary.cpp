@@ -77,6 +77,18 @@ bool UDictionary::AddEntry(FString Original, FString Translation)
 	return false;
 }
 
+void UDictionary::ReplaceEntry(FString Original, FString Translation)
+{
+	if ((UDictionary::Contains(Original)))
+	{
+		UpdateEntryTranslation(GetEntryIndex(Original), Translation);
+	}
+	else
+	{
+		AddEntry(Original, Translation);
+	}
+}
+
 void UDictionary::UpdateEntryTranslation(int Index, FString NewTranslation)
 {
 	UDictionary::GetEntry(Index)->SetTranslation(NewTranslation);

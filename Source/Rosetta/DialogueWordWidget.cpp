@@ -2,6 +2,9 @@
 
 
 #include "DialogueWordWidget.h"
+#include "DialogueWidget.h"
+#include "Dictionary.h"
+#include "DictionaryEntry.h"
 
 void UDialogueWordWidget::NativeConstruct()
 {
@@ -19,9 +22,25 @@ bool UDialogueWordWidget::Initialize()
 	TranslationButton->OnClicked.AddDynamic(this, &UDialogueWordWidget::ActivateTranslation);
 	TranslationInput->OnTextCommitted.AddDynamic(this, &UDialogueWordWidget::DeactivateTranslation);
 
-	UDialogueWordWidget::VerifyTranslated();
-
 	return true;
+}
+
+void UDialogueWordWidget::Setup(UDialogueWidget* ParentWidget, UDictionary* Dictionary, FString Original)
+{
+	this->Dictionary = Dictionary;
+	this->ParentWidget = ParentWidget;
+	UpdateOriginal(Original);
+
+	if (Dictionary->Contains(Original))
+	{
+		Translation->SetText(FText::FromString(Dictionary->GetEntry(Original)->GetTranslation()));
+	}
+	else
+	{
+		Translation->SetText(FText::FromString(Original));
+	}
+	
+	UDialogueWordWidget::VerifyTranslated();
 }
 
 void UDialogueWordWidget::OnTranslationHover()
@@ -70,7 +89,16 @@ void UDialogueWordWidget::UpdateTranslation(FString TranslationText)
 void UDialogueWordWidget::UpdateTranslation(FText TranslationText)
 {
 	Translation->SetText(TranslationText);
-	ParentWidget->UpdateDictionary(Original->Text.ToString(), Translation->Text.ToString());
+	FString OriginalString = Original->GetText().ToString();
+	FString TranslationString = Translation->GetText().ToString();
+	if (Dictionary->Contains(OriginalString))
+	{
+		Dictionary->UpdateEntryTranslation(OriginalString, TranslationString);
+	}
+	else
+	{
+		Dictionary->AddEntry(OriginalString, TranslationString);
+	}
 	UDialogueWordWidget::VerifyTranslated();
 }
 
@@ -84,9 +112,3 @@ void UDialogueWordWidget::UpdateOriginal(FText OriginalText)
 	Original->SetText(OriginalText);
 	UDialogueWordWidget::VerifyTranslated();
 }
-
-void UDialogueWordWidget::SetParentWidget(UDialogueWidget* NewParent)
-{
-	this->ParentWidget = NewParent;
-}
-

@@ -7,7 +7,6 @@
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Components/EditableTextBox.h"
-#include "DialogueWidget.h"
 #include "DialogueWordWidget.generated.h"
 
 /**
@@ -18,11 +17,13 @@ class ROSETTA_API UDialogueWordWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-	UDialogueWidget* ParentWidget;
+	class UDictionary* Dictionary;
+	class UDialogueWidget* ParentWidget;
 
 	virtual void NativeConstruct() override;
 
 	virtual bool Initialize() override;
+
 
 	UFUNCTION()
 	void OnTranslationHover();
@@ -51,11 +52,10 @@ class ROSETTA_API UDialogueWordWidget : public UUserWidget
 	UEditableTextBox* TranslationInput;
 
 public:
-	
+	void Setup(UDialogueWidget* ParentWidget, UDictionary* Dictionary, FString Original);
 	UFUNCTION()
 	void UpdateTranslation(FString TranslationString);
 	void UpdateTranslation(FText TranslationText);
 	void UpdateOriginal(FString OriginalString);
 	void UpdateOriginal(FText OriginalText);
-	void SetParentWidget(UDialogueWidget* NewParent);
 };
