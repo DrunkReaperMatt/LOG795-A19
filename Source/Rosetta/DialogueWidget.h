@@ -81,7 +81,4 @@ class ROSETTA_API UDialogueWidget : public UUserWidget
 	UEditableTextBox* ResponseInput;
 
 	class ARosettaCharacter* Player;
-
-public:
-	void UpdateDictionary(FString OriginalWord, FString NewTranslation);
 };
