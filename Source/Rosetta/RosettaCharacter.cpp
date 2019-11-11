@@ -2,6 +2,7 @@
 
 #include "RosettaCharacter.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
+#include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -49,6 +50,11 @@ ARosettaCharacter::ARosettaCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
+	// Create Dictionary Widget and store it
+	if (wDictionary) {
+		DictionaryWidget = CreateWidget<UUserWidget>(this, wDictionary);
+	}
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
@@ -82,6 +88,7 @@ void ARosettaCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ARosettaCharacter::OnResetVR);
 
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ARosettaCharacter::Interact);
+	PlayerInputComponent->BindAction("Dictionary", IE_Pressed, this, &ARosettaCharacter::OpenDictionary);
 }
 
 #pragma region Template code
@@ -185,6 +192,16 @@ FVector ARosettaCharacter::GetReachLineEnd() const
 	FVector LineStartingPoint = PlayerViewPointLocation - FVector(0.f, 0.f, ReachLineHeightFromEyes);
 
 	return LineStartingPoint + PlayerRotation.Vector() * Reach;
+}
+
+void ARosettaCharacter::OpenDictionary()
+{
+	if (DictionaryWidget) {
+		DictionaryWidget->AddToViewport();
+		// TODO
+		// Foreach Dictionary entries
+		// Call custom event "AddEntry" from Dictionary Widget Class
+	}
 }
 
 void ARosettaCharacter::Interact()
