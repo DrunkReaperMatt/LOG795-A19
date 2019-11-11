@@ -103,6 +103,7 @@ private:
 	void ResetCurrentlyHitInteractable();
 
 	TMap<FString, FString> Dictionary;
+	bool isDictionaryOpen;
 
 public:
 

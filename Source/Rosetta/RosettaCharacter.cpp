@@ -52,11 +52,7 @@ ARosettaCharacter::ARosettaCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
-	// Create Dictionary Widget and store it
-	if (wDictionary) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Setup dictionary!"));
-		DictionaryWidget = CreateWidget<UUserWidget>(GetWorld(), wDictionary);
-	}
+	isDictionaryOpen = false;
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
@@ -200,12 +196,25 @@ FVector ARosettaCharacter::GetReachLineEnd() const
 void ARosettaCharacter::OpenDictionary()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("J pressed!"));
+	// Create Dictionary Widget and store it
+	if (wDictionary && !DictionaryWidget) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Setup dictionary!"));
+		DictionaryWidget = CreateWidget<UUserWidget>(GetWorld(), wDictionary);
+	}
 	if (DictionaryWidget) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Opening dictionary!"));
-		DictionaryWidget->AddToViewport();
-		// TODO
-		// Foreach Dictionary entries
-		// Call custom event "AddEntry" from Dictionary Widget Class
+		if (!isDictionaryOpen) {
+			isDictionaryOpen = true;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Opening dictionary!"));
+			DictionaryWidget->AddToViewport();
+			// TODO
+			// Foreach Dictionary entries
+			// Call custom event "AddEntry" from Dictionary Widget Class
+		}
+		else {
+			isDictionaryOpen = false;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Closing dictionary!"));
+			DictionaryWidget->RemoveFromParent();
+		}
 	}
 }
 
