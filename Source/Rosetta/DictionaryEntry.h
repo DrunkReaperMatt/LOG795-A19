@@ -10,32 +10,32 @@
 /**
  * 
  */
-USTRUCT(BlueprintType)
-struct ROSETTA_API FDictionaryEntry
+UCLASS(BlueprintType)
+class ROSETTA_API UDictionaryEntry : public UObject
 {
 	GENERATED_BODY()
-	
-	UPROPERTY()
+
+private:
 	FString Original;
 
-	UPROPERTY()
 	FString Translation;
 
 	// TODO: add picture variable
-	
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "Dictionary Entry")
 	FString GetOriginal() const { return Original; }
 
+	UFUNCTION(BlueprintCallable, Category = "Dictionary Entry")
 	void SetOriginal(const FString OriginalText) { this->Original = OriginalText; }
-	
+
+	UFUNCTION(BlueprintCallable, Category = "Dictionary Entry")
 	FString GetTranslation() const { return Translation; }
 
+	UFUNCTION(BlueprintCallable, Category = "Dictionary Entry")
 	void SetTranslation(const FString TranslationText) { this->Translation = TranslationText; }
 
-	FDictionaryEntry()
-	{
-	}
-
-	FDictionaryEntry(FString OriginalText, FString TranslationText)
+	void Initialize(FString OriginalText, FString TranslationText)
 	{
 		SetOriginal(OriginalText);
 		SetTranslation(TranslationText);

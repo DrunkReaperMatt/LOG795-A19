@@ -16,7 +16,7 @@ class ROSETTA_API UDictionary : public UObject
 	GENERATED_BODY()
 
 private:
-	TArray<FDictionaryEntry*> Entries;
+	TArray<UDictionaryEntry*> Entries;
 
 	bool IsIndexInRange(int Index) const;
 
@@ -26,8 +26,8 @@ public:
 	bool Contains(FString Original) const;
 	int GetEntryIndex(FString Original) const;
 	UFUNCTION(BlueprintCallable, Category="Dictionary")
-	FDictionaryEntry& GetEntry(int Index) const;
-	FDictionaryEntry& GetEntry(FString Original) const;
+	UDictionaryEntry* GetEntry(int Index) const;
+	UDictionaryEntry* GetEntry(FString Original) const;
 	void DeleteEntry(int Index);
 
 	/**
