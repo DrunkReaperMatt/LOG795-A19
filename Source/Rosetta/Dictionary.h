@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "DictionaryEntry.h"
 #include "Dictionary.generated.h"
 
 /**
@@ -15,16 +16,18 @@ class ROSETTA_API UDictionary : public UObject
 	GENERATED_BODY()
 
 private:
-	TArray<struct FDictionaryEntry*> Entries;
+	TArray<FDictionaryEntry*> Entries;
 
 	bool IsIndexInRange(int Index) const;
 
 public:
+	UFUNCTION(BlueprintCallable, Category="Dictionary")
 	int GetEntriesCount() const;
 	bool Contains(FString Original) const;
 	int GetEntryIndex(FString Original) const;
-	FDictionaryEntry* GetEntry(int Index) const;
-	FDictionaryEntry* GetEntry(FString Original) const;
+	UFUNCTION(BlueprintCallable, Category="Dictionary")
+	FDictionaryEntry& GetEntry(int Index) const;
+	FDictionaryEntry& GetEntry(FString Original) const;
 	void DeleteEntry(int Index);
 
 	/**

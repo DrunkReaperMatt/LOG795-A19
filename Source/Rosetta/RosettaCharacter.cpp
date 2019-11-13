@@ -2,6 +2,7 @@
 
 #include "RosettaCharacter.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
+#include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -13,6 +14,8 @@
 #include <Kismet/GameplayStatics.h>
 #include "Engine.h"
 #include "Dictionary.h"
+//#include <EngineGlobals.h>
+//#include <Runtime/Engine/Classes/Engine/Engine.h>
 
 #define OUT
 
@@ -50,6 +53,8 @@ ARosettaCharacter::ARosettaCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
+	isDictionaryOpen = false;
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
@@ -83,6 +88,7 @@ void ARosettaCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ARosettaCharacter::OnResetVR);
 
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ARosettaCharacter::Interact);
+	PlayerInputComponent->BindAction("Dictionary", IE_Pressed, this, &ARosettaCharacter::OpenDictionary);
 }
 
 #pragma region Template code
@@ -186,6 +192,31 @@ FVector ARosettaCharacter::GetReachLineEnd() const
 	FVector LineStartingPoint = PlayerViewPointLocation - FVector(0.f, 0.f, ReachLineHeightFromEyes);
 
 	return LineStartingPoint + PlayerRotation.Vector() * Reach;
+}
+
+void ARosettaCharacter::OpenDictionary()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("J pressed!"));
+	// Create Dictionary Widget and store it
+	if (wDictionary && !DictionaryWidget) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Setup dictionary!"));
+		DictionaryWidget = CreateWidget<UUserWidget>(GetWorld(), wDictionary);
+	}
+	if (DictionaryWidget) {
+		if (!isDictionaryOpen) {
+			isDictionaryOpen = true;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Opening dictionary!"));
+			DictionaryWidget->AddToViewport();
+			// TODO
+			// Foreach Dictionary entries
+			// Call custom event "AddEntry" from Dictionary Widget Class
+		}
+		else {
+			isDictionaryOpen = false;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Closing dictionary!"));
+			DictionaryWidget->RemoveFromParent();
+		}
+	}
 }
 
 void ARosettaCharacter::Interact()

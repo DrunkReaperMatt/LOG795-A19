@@ -30,6 +30,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+	/** Dictionary Widget */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Widgets)
+	TSubclassOf<class UUserWidget> wDictionary;
+
+	UUserWidget* DictionaryWidget;
+
 protected:
 
 	/** Resets HMD orientation in VR. */
@@ -87,6 +93,7 @@ protected:
 	FVector GetReachLineEnd() const;
 
 	void Interact();
+	void OpenDictionary();
 private:
 	AInteractableActor* CurrentlyHitInteractable = nullptr;
 
@@ -96,9 +103,11 @@ private:
 	void ResetCurrentlyHitInteractable();
 
 	class UDictionary* Dictionary;
+	bool isDictionaryOpen;
 
 public:
 	void UpdateDictionary(FString OriginalWord, FString NewTranslation);
 	void BeginPlay() override;
+	UFUNCTION(BlueprintCallable, Category="Dictionary")
 	UDictionary* GetDictionary();
 };

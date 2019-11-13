@@ -10,7 +10,7 @@
 /**
  * 
  */
-USTRUCT()
+USTRUCT(BlueprintType)
 struct ROSETTA_API FDictionaryEntry
 {
 	GENERATED_BODY()
