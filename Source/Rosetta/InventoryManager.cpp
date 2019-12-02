@@ -26,8 +26,9 @@ void UInventoryManager::AddItem(APickupableItem* Item, int Count)
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("%s is not a valid PickupableItem or hasn't been added to the list of IDs", 
-			Item->StaticClass()->GetFName().ToString()));
+		// TODO: finish this
+		//UE_LOG(LogTemp, Error, TEXT("%s is not a valid PickupableItem or hasn't been added to the list of IDs", 
+		//	Item->StaticClass()->GetFName().ToString()));
 	}
 }
 
@@ -36,6 +37,7 @@ APickupableItem* UInventoryManager::GetItem(int index)
 	// TODO: finish this
 	FString s = ItemTypes[index].ToString();
 	LoadClass<APickupableItem>(NULL, TEXT(""), NULL, LOAD_None, NULL);
+	return nullptr;
 }
 
 void UInventoryManager::SpawnItem(int index)
