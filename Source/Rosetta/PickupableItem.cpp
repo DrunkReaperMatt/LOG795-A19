@@ -2,6 +2,8 @@
 
 
 #include "PickupableItem.h"
+#include "RosettaController.h"
+#include "RosettaCharacter.h"
 
 // Called when the game starts or when spawned
 void APickupableItem::BeginPlay()
@@ -10,10 +12,22 @@ void APickupableItem::BeginPlay()
 
 }
 
+APickupableItem::APickupableItem()
+{
+	PickupMesh = CreateDefaultSubobject<UStaticMeshComponent>("PickupMesh");
+	RootComponent = Cast<USceneComponent>(PickupMesh);
+
+	ItemID = FName("No ID");
+}
+
 void APickupableItem::Interact()
 {
-	OnPickup();
-	Destroy();
+	ARosettaController* IController = GetWorld()->GetFirstPlayerController<ARosettaController>();
+	if (IController->AddItemToInventoryByID(ItemID))
+	{
+		OnPickup();
+		Destroy();
+	}
 }
 
 FText APickupableItem::GetActionDescription()
