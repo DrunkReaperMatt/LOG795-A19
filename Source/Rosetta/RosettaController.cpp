@@ -26,3 +26,39 @@ bool ARosettaController::AddItemToInventoryByID(FName ID)
 	}
 	return false;
 }
+
+int ARosettaController::CountItemByID(FName ID) const
+{
+	int Count = 0;
+	for (FInventoryItem Item : Inventory)
+	{
+		if (Item.ItemID == ID)
+		{
+			Count++;
+		}
+	}
+	return Count;
+}
+
+void ARosettaController::RemoveItemFromInventoryByID(FName ID, int Count)
+{
+	if (Count > CountItemByID(ID))
+	{
+		UE_LOG(LogTemp, Error, TEXT("Tried to remove more items than there are available"));
+		return;
+	}
+	int j = 0;
+	for (int i = 0; i < Inventory.Num(); i++)
+	{
+		if (j >= Count)
+		{
+			return;
+		}
+		if (Inventory[i].ItemID == ID)
+		{
+			Inventory.RemoveAt(i);
+			i--;
+			j++;
+		}
+	}
+}

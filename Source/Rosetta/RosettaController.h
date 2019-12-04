@@ -26,4 +26,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<FInventoryItem> Inventory;
+
+	UFUNCTION(BlueprintCallable, Category = "Utils")
+	int CountItemByID(FName ID) const;
+
+	UFUNCTION(BlueprintCallable, Category = "Utils")
+		void RemoveItemFromInventoryByID(FName ID, int Count);
 };
