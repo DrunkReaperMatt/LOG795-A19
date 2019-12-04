@@ -2,6 +2,7 @@
 
 #include "RosettaCharacter.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
+#include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -12,9 +13,13 @@
 #include "DrawDebugHelpers.h"
 #include <Kismet/GameplayStatics.h>
 #include "Engine.h"
+#include "Dictionary.h"
 
 #include "DlgContext.h"
 #include "DlgManager.h"
+
+#include <EngineGlobals.h>
+#include <Runtime/Engine/Classes/Engine/Engine.h>
 
 #define OUT
 
@@ -52,6 +57,8 @@ ARosettaCharacter::ARosettaCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
+	isDictionaryOpen = false;
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
@@ -85,6 +92,7 @@ void ARosettaCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ARosettaCharacter::OnResetVR);
 
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &ARosettaCharacter::Interact);
+	PlayerInputComponent->BindAction("Dictionary", IE_Pressed, this, &ARosettaCharacter::OpenDictionary);
 }
 
 #pragma region Template code
@@ -190,6 +198,24 @@ FVector ARosettaCharacter::GetReachLineEnd() const
 	return LineStartingPoint + PlayerRotation.Vector() * Reach;
 }
 
+void ARosettaCharacter::OpenDictionary()
+{
+	// Create Dictionary Widget and store it
+	if (wDictionary && !DictionaryWidget) {
+		DictionaryWidget = CreateWidget<UUserWidget>(GetWorld(), wDictionary);
+	}
+	if (DictionaryWidget) {
+		if (!isDictionaryOpen) {
+			isDictionaryOpen = true;
+			DictionaryWidget->AddToViewport();
+		}
+		else {
+			isDictionaryOpen = false;
+			DictionaryWidget->RemoveFromParent();
+		}
+	}
+}
+
 void ARosettaCharacter::Interact()
 {
 	AInteractableActor* InteractableHit = Cast<AInteractableActor>(ARosettaCharacter::GetFirstPhysicsBodyInReach().GetActor());
@@ -271,20 +297,22 @@ FHitResult ARosettaCharacter::GetFirstPhysicsBodyInReach() const
 	return HitResult;
 }
 
-void ARosettaCharacter::UpdateDictionary(FString OriginalWord, FString NewTranslation)
+void ARosettaCharacter::BeginPlay()
 {
-	if (Dictionary.Contains(OriginalWord))
-	{
-		Dictionary[OriginalWord] = NewTranslation;
-	}
-	else
-	{
-		Dictionary.Add(OriginalWord, NewTranslation);
-	}
+	Super::BeginPlay();
+
+	Dictionary = NewObject<UDictionary>();
+	//if (ARosettaCharacter::GetDictionary().Contains(OriginalWord))
+	//{
+	//	Dictionary[OriginalWord] = NewTranslation;
+	//}
+	//else
+	//{
+	//	Dictionary.Add(OriginalWord, NewTranslation);
+	//}
 }
 
-
-TMap<FString, FString> ARosettaCharacter::GetDictionary()
+UDictionary* ARosettaCharacter::GetDictionary()
 {
 	return Dictionary;
 }

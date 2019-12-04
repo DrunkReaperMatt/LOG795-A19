@@ -9,6 +9,8 @@
 #include "DialogueWordWidget.h"
 #include "Components/HorizontalBoxSlot.h"
 #include "RosettaCharacter.h"
+#include "Dictionary.h"
+#include "DictionaryEntry.h"
 
 UDialogueWidget::UDialogueWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -59,20 +61,29 @@ void UDialogueWidget::GenerateWordWidgets(FString Sentence)
 
 	for (FString Word : Words)
 	{
+		// Create DWW
 		UDialogueWordWidget* DWW = CreateWidget<UDialogueWordWidget>(GetWorld(), DWWClass);
-		DWW->SetParentWidget(this);
-
-		DWW->UpdateOriginal(Word);
 		if (Player)
 		{
-			if (!Player->GetDictionary().Contains(Word))
+			DWW->Setup(this, Player->GetDictionary(), Word);
+		}
+		else
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("No player found on DialogueWidget"));
+			UDictionary* Dict = Player->GetDictionary();
+			if (!Dict->Contains(Word))
 			{
-				UDialogueWidget::UpdateDictionary(Word, Word);
+				Dict->AddEntry(Word, Word);
 			}
+			else
+			{
+				DWW->UpdateTranslation(Dict->GetEntry(Word)->GetTranslation());
+			}
+			DWW->UpdateTranslation(Dict->GetEntry(Word)->GetTranslation());
 
-			DWW->UpdateTranslation(Player->GetDictionary()[Word]);
 		}
 
+		// Set DWW size and position
 		FSlateChildSize Size = FSlateChildSize(ESlateSizeRule::Fill);
 		WordsPanel->AddChild(DWW);
 		UHorizontalBoxSlot* HBoxSlot = Cast<UHorizontalBoxSlot>(DWW->Slot);
@@ -178,7 +189,7 @@ void UDialogueWidget::CloseWidget()
 
 void UDialogueWidget::UpdateDictionary(FString OriginalWord, FString NewTranslation)
 {
-	Player->UpdateDictionary(OriginalWord, NewTranslation);
+	Player->GetDictionary()->UpdateEntryTranslation(OriginalWord, NewTranslation);
 }
 
 void UDialogueWidget::UpdateOption(int32 index) {

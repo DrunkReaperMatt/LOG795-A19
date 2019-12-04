@@ -34,6 +34,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 		float BaseLookUpRate;
 
+	/** Dictionary Widget */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Widgets)
+	TSubclassOf<class UUserWidget> wDictionary;
+
+	UUserWidget* DictionaryWidget;
+
 protected:
 
 	/** Resets HMD orientation in VR. */
@@ -91,6 +97,7 @@ protected:
 	FVector GetReachLineEnd() const;
 
 	void Interact();
+	void OpenDictionary();
 private:
 	AInteractableActor* CurrentlyHitInteractable = nullptr;
 
@@ -99,12 +106,11 @@ private:
 	bool IsCurrentlyHitInteractableDirty() const;
 	void ResetCurrentlyHitInteractable();
 
-	TMap<FString, FString> Dictionary;
+	class UDictionary* Dictionary;
+	bool isDictionaryOpen;
 
 public:
-
 	void UpdateDictionary(FString OriginalWord, FString NewTranslation);
-	TMap<FString, FString> GetDictionary();
 
 
 	/// DLG Dialogue
@@ -153,4 +159,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		void ResponseResult();
+
+	void BeginPlay() override;
+	UFUNCTION(BlueprintCallable)
+	UDictionary* GetDictionary();
 };
