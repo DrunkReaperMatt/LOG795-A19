@@ -87,7 +87,7 @@ class ROSETTA_API UDialogueWidget : public UUserWidget
 
 public:
 
-	UPROPERTY(EditAnywhere, meta = (BindWidget))
+	UPROPERTY(Blueprintreadonly, EditAnywhere, meta = (BindWidget))
 	UEditableTextBox* ResponseInput;
 
 	void UpdateDictionary(FString OriginalWord, FString NewTranslation);
