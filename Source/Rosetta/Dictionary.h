@@ -22,12 +22,16 @@ private:
 public:
 	UFUNCTION(BlueprintCallable, Category = "Dictionary")
 	int GetEntriesCount() const;
+
 	UFUNCTION(BlueprintCallable, Category = "Dictionary")
 	bool Contains(FString Original) const;
+
 	UFUNCTION(BlueprintCallable, Category = "Dictionary")
 	int GetEntryIndex(FString Original) const;
+
 	UFUNCTION(BlueprintCallable, Category="Dictionary")
 	UDictionaryEntry* GetEntry(int Index) const;
+
 	UDictionaryEntry* GetEntry(FString Original) const;
 	void DeleteEntry(int Index);
 
@@ -43,6 +47,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Dictionary")
 	void UpdateEntryTranslation(int Index, FString NewTranslation);
+
 	void UpdateEntryTranslation(FString Original, FString Translation);
 
 	/**
