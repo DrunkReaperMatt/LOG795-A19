@@ -7,29 +7,8 @@
 
 #include <Engine/Engine.h>
 
-// Sets default values
-ADictionaryItem::ADictionaryItem()
-{
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
 
-}
-
-// Called when the game starts or when spawned
-void ADictionaryItem::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ADictionaryItem::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-void ADictionaryItem::Interact()
+void ADictionaryItem::OnPickup()
 {
 	Player->GetDictionary()->ReplaceEntry("Grany", "Hello");
 	Player->GetDictionary()->ReplaceEntry("jweeb", "there");
@@ -78,11 +57,5 @@ void ADictionaryItem::Interact()
 	Player->GetDictionary()->ReplaceEntry("zvarma", "number");
 	Player->GetDictionary()->ReplaceEntry("luis", "again");
 	Player->GetDictionary()->ReplaceEntry("jibi", "pretty");
-	Destroy();
-}
-
-FText ADictionaryItem::GetActionDescription()
-{
-	return FText::FromString("pick up item");
 }
 

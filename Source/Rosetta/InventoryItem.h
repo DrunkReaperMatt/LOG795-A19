@@ -16,27 +16,23 @@ public:
 	FInventoryItem()
 	{
 		this->Name = FText::FromString("No Name");
-		this->Weight = 1;
-		this->Value = 1;
 		this->Description = FText::FromString("No Description");
+		this->ItemCount = 0;
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="ItemData")
 		FName ItemID;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
 		FText Name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int32 Weight;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
+		int ItemCount;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int32 Value;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
+		UTexture2D* Thumbnail;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		UStaticMesh* Thumbnail;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemData")
 		FText Description;
 
 	bool operator==(const FInventoryItem& OtherItem) const

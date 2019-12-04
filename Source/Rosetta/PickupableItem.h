@@ -32,5 +32,5 @@ public:
 	virtual FText GetActionDescription() override;
 	
 private:
-	virtual void OnPickup() { check(0 && "You must override this"); }
+	virtual void OnPickup() {  }
 };

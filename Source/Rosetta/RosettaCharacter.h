@@ -8,7 +8,6 @@
 #include "DlgDialogueParticipant.h"
 
 #include "DialogueWidget.h"
-#include "InventoryManager.h"
 
 #include "RosettaCharacter.generated.h"
 
