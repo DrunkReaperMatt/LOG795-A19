@@ -326,10 +326,10 @@ void ARosettaCharacter::StartDialogue(class UDlgDialogue* Dialogue, UObject* Oth
 
 void ARosettaCharacter::SelectDialogueOption(int32 Index)
 {
-	if (ActiveContext == nullptr)
-	{
-		return;
-	}
+	//if (&ActiveContext == NULL)
+	//{
+		//return;
+	//}
 
 	if (ActiveContext == nullptr || Index < 0 || Index >= ActiveContext->GetOptionNum())
 		return;
