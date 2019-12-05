@@ -104,6 +104,11 @@ void UDialogueWidget::GenerateWordWidgets(FString Sentence)
 
 void UDialogueWidget::OkayPressed()
 {
+	if (Player == nullptr)
+	{
+		return;
+	}
+
 	Player->SelectDialogueOption(DialogueStep);
 	UpdateOption(DialogueStep);
 }

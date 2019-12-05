@@ -8,7 +8,7 @@ public class Rosetta : ModuleRules
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "UMG", "Slate", "SlateCore", "Python", /*"PythonScriptPlugin",*/ "UnrealEnginePython" });
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "UMG", "Slate", "SlateCore", "Python", "PythonScriptPlugin", "UnrealEnginePython" });
 		
 		PrivateDependencyModuleNames.AddRange(new string[] {"DlgSystem"});
 	}

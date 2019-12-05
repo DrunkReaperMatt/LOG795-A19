@@ -40,6 +40,10 @@ public:
 
 	FName GetParticipantName_Implementation() const override { return npcName; };
 
+	UPROPERTY(BlueprintReadOnly)
+		float SentimentValueNPC;
 
+	UFUNCTION(BlueprintCallable, Category = "Unreal Python")
+	float SetSentimentValueNPC(float SentimentInValuePython);
 
 };

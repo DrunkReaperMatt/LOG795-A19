@@ -4,7 +4,6 @@
 #include "NonPlayerCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 #include "DialogueWidget.h"
-
 #include "RosettaCharacter.h"
 #include "DlgManager.h"
 
@@ -32,4 +31,8 @@ FText ANonPlayerCharacter::GetActionDescription()
 	return FText::FromString("talk");
 }
 
-
+float ANonPlayerCharacter::SetSentimentValueNPC(float SentimentInValuePython)
+{
+	SentimentValueNPC = SentimentInValuePython;
+	return SentimentValueNPC;
+}

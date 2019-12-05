@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "PythonBlueprintFunctionLibrary.h"
+#include "NonPlayerCharacter.h"
 #include "MyBlueprintFunctionLibrary.generated.h"
 
 UCLASS()
@@ -14,7 +15,5 @@ class ROSETTA_API UMyBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Unreal Python")
-		static void ExecutePythonString(FString PythonCmd, FString WidgetInput);
-
-	//class UPythonBlueprintFunctionLibrary* pybp;
+		static FString ExecutePythonString(FString PythonCmd);
 };
