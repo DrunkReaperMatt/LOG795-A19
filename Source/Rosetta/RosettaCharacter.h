@@ -106,7 +106,8 @@ private:
 	bool IsCurrentlyHitInteractableDirty() const;
 	void ResetCurrentlyHitInteractable();
 
-	class UDictionary* Dictionary;
+	UPROPERTY()
+	class UDictionary* Dictionary = nullptr;
 	bool isDictionaryOpen;
 
 public:
@@ -139,7 +140,7 @@ public:
 		UDlgContext* GetActiveContext() { return ActiveContext; }
 
 private:
-
+	UPROPERTY()
 	class UDlgContext* ActiveContext = nullptr;
 
 	FString InputString;
@@ -155,6 +156,7 @@ public:
 
 	FString GetInputString() { return InputString; }
 
+	UPROPERTY()
 	UDialogueWidget* widget = nullptr;
 
 	UFUNCTION(BlueprintCallable)

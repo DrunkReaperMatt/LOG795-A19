@@ -17,7 +17,8 @@ class ROSETTA_API UDialogueWordWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-	class UDictionary* Dictionary;
+	UPROPERTY()
+	class UDictionary* Dictionary = nullptr;
 	class UDialogueWidget* ParentWidget;
 
 	virtual void NativeConstruct() override;
