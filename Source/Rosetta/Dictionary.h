@@ -15,6 +15,7 @@ class ROSETTA_API UDictionary : public UObject
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
 	TArray<UDictionaryEntry*> Entries;
 
 	bool IsIndexInRange(int Index) const;
