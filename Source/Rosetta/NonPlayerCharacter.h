@@ -44,6 +44,15 @@ public:
 		float SentimentValueNPC;
 
 	UFUNCTION(BlueprintCallable, Category = "Unreal Python")
-	float SetSentimentValueNPC(float SentimentInValuePython);
+		float SetSentimentValueNPC(float SentimentInValuePython);
+
+	UPROPERTY(BlueprintReadOnly)
+		FString InputTokenTags;
+
+	UFUNCTION(BlueprintCallable, Category = "Unreal Python")
+		FString SetInputTokenTags(FString InputPython);
+
+	UPROPERTY(BlueprintReadOnly)
+		bool ShouldNPCGoAway;
 
 };

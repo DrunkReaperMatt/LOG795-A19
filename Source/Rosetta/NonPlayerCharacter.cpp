@@ -5,6 +5,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "DialogueWidget.h"
 #include "RosettaCharacter.h"
+#include <stdio.h>
 #include "DlgManager.h"
 
 ANonPlayerCharacter::ANonPlayerCharacter()
@@ -35,4 +36,10 @@ float ANonPlayerCharacter::SetSentimentValueNPC(float SentimentInValuePython)
 {
 	SentimentValueNPC = SentimentInValuePython;
 	return SentimentValueNPC;
+}
+
+FString ANonPlayerCharacter::SetInputTokenTags(FString InputPython)
+{
+	InputTokenTags = InputPython;
+	return InputTokenTags;
 }
