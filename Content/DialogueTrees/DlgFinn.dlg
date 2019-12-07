@@ -16,7 +16,7 @@ Node_Speech StartNode
 }
 DlgParticipantClasses
 {
-	{  ParticipantName "FInn" ParticipantClass "/Game/Blueprints/MyRosettaCharacter.MyRosettaCharacter_C" }
+	{  ParticipantName "FInn" ParticipantClass "/Game/Blueprints/NPCs/NPC_Finn.NPC_Finn_C" }
 	{  ParticipantName "MyCharacterName" ParticipantClass "/Game/Blueprints/MyRosettaCharacter.MyRosettaCharacter_C" }
 }
 Node Nodes
@@ -27,7 +27,7 @@ Node Nodes
 		SelectorType "EDlgNodeSelectorType::DlgNodeSelectorFirst"
 		OwnerName "Finn"
 		bCheckChildrenOnEvaluation True
-		EnterEvents { {  ParticipantName "MyCharacterName" EventType "EDlgEventType::DlgEventModifyBool" EventName "QuestIsCompleted" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
+		EnterEvents { {  ParticipantName "Finn" EventType "EDlgEventType::DlgEventModifyBool" EventName "QuestIsCompleted" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
 		Children
 		{
 			{  TargetIndex 1 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
@@ -46,7 +46,7 @@ Node Nodes
 		VoiceSoundWave ""
 		VoiceDialogueWave ""
 		GenericData ""
-		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionBoolCall" ParticipantName "MyCharacterName" CallbackName "QuestIsCompleted" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "MyCharacterName" OtherVariableName "QuestIsCompleted" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue True bLongTermMemory True } }
+		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionBoolCall" ParticipantName "Finn" CallbackName "QuestIsCompleted" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "MyCharacterName" OtherVariableName "QuestIsCompleted" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue True bLongTermMemory True } }
 		Children { {  TargetIndex 3 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
 	// 2
@@ -93,7 +93,7 @@ Node Nodes
 			{  TargetIndex -1 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
 			{  TargetIndex -1 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
 		}
-		EnterEvents { {  ParticipantName "MyCharacterName" EventType "EDlgEventType::DlgEventEvent" EventName "TalkToFinn" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
+		EnterEvents { {  ParticipantName "Finn" EventType "EDlgEventType::DlgEventEvent" EventName "TalkToFinn" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
 		Children { {  TargetIndex 4 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
 	// 3
@@ -130,7 +130,7 @@ Node Nodes
 		SelectorType "EDlgNodeSelectorType::DlgNodeSelectorFirst"
 		OwnerName "Finn"
 		bCheckChildrenOnEvaluation True
-		EnterEvents { {  ParticipantName "MyCharacterName" EventType "EDlgEventType::DlgEventEvent" EventName "AnswerFinn" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
+		EnterEvents { {  ParticipantName "Finn" EventType "EDlgEventType::DlgEventEvent" EventName "AnswerFinn" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
 		Children
 		{
 			{  TargetIndex 7 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
@@ -149,7 +149,7 @@ Node Nodes
 		VoiceSoundWave ""
 		VoiceDialogueWave ""
 		GenericData ""
-		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionClassBoolVariable" ParticipantName "MyCharacterName" CallbackName "bAnswerPrompt" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue True bLongTermMemory True } }
+		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionClassBoolVariable" ParticipantName "Finn" CallbackName "bAnswerPrompt" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue True bLongTermMemory True } }
 		Children { {  TargetIndex 9 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
 	// 8
@@ -192,7 +192,7 @@ Node Nodes
 	{
 		OwnerName "Finn"
 		bCheckChildrenOnEvaluation False
-		EnterEvents { {  ParticipantName "MyCharacterName" EventType "EDlgEventType::DlgEventEvent" EventName "ConcludeIntroQuest" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
+		EnterEvents { {  ParticipantName "Finn" EventType "EDlgEventType::DlgEventEvent" EventName "ConcludeIntroQuest" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
 	}
 	// 10
 	Node_End 
