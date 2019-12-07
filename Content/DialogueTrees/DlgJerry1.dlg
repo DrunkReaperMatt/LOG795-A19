@@ -186,6 +186,6 @@ Node Nodes
 	{
 		OwnerName "Jerry"
 		bCheckChildrenOnEvaluation False
-		EnterEvents { {  ParticipantName "MyCharacterName" EventType "EDlgEventType::DlgEventEvent" EventName "IT_ConcludeQuest" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
+		EnterEvents { {  ParticipantName "Jerry" EventType "EDlgEventType::DlgEventEvent" EventName "ConcludeQuest" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
 	}
 }
