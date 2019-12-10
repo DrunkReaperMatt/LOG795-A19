@@ -33,7 +33,10 @@ bool UDialogueWidget::Initialize()
 	UDialogueWidget::Setup();
 
 	UpdateOption(DialogueStep);
-	Player->widget = this;
+	if (Player != nullptr)
+	{
+		Player->widget = this;
+	}
 
 	return true;
 }
@@ -101,6 +104,11 @@ void UDialogueWidget::GenerateWordWidgets(FString Sentence)
 
 void UDialogueWidget::OkayPressed()
 {
+	if (Player == nullptr)
+	{
+		return;
+	}
+
 	Player->SelectDialogueOption(DialogueStep);
 	UpdateOption(DialogueStep);
 }
@@ -194,6 +202,12 @@ void UDialogueWidget::UpdateDictionary(FString OriginalWord, FString NewTranslat
 
 void UDialogueWidget::UpdateOption(int32 index) {
 
+	if (Player == nullptr)
+	{
+		CloseWidget();
+		return;
+	}
+
 	if (Player->GetActiveContext() == nullptr) {
 		Player->widget = nullptr;
 		CloseWidget();
@@ -210,10 +224,10 @@ void UDialogueWidget::UpdateOption(int32 index) {
 			ActivateResponse();
 		}
 
-// 		if (!ResponseInput->GetText().ToString().IsEmpty())
-// 		{
-// 			Player->SetInputString(ResponseInput->GetText().ToString());
-// 		}
+ 		if (!ResponseInput->GetText().ToString().IsEmpty())
+ 		{
+ 			Player->SetInputString(ResponseInput->GetText().ToString());
+ 		}
 	}
 	else {
 		Player->widget = nullptr;
