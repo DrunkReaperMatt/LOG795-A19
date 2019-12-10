@@ -34,6 +34,41 @@ Node Nodes
 		}
 	}
 	// 1
+	Node_Selector 
+	{
+		SelectorType "EDlgNodeSelectorType::DlgNodeSelectorFirst"
+		OwnerName "Smithy"
+		bCheckChildrenOnEvaluation True
+		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionBoolCall" ParticipantName "Smithy" CallbackName "HasCompletedQuest" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "Smithy" OtherVariableName "HasCompletedQuest" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue False bLongTermMemory True } }
+		Children
+		{
+			{  TargetIndex 3 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
+			{  TargetIndex 4 Text "" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
+		}
+	}
+	// 2
+	Node_SpeechSequence 
+	{
+		OwnerName "Smithy"
+		bCheckChildrenOnEvaluation False
+		SpeechSequence
+		{
+			{
+				Speaker "Smithy"
+				Text "Done"
+				SpeakerState "None"
+				EdgeText "Next"
+				NodeData ""
+				VoiceSoundWave ""
+				VoiceDialogueWave ""
+				GenericData ""
+			}
+		}
+		InnerEdges { {  TargetIndex -1 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionBoolCall" ParticipantName "Smithy" CallbackName "HasCompletedQuest" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue True bLongTermMemory True } }
+		Children { {  TargetIndex 5 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+	}
+	// 3
 	Node_SpeechSequence 
 	{
 		OwnerName "Smithy"
@@ -53,9 +88,9 @@ Node Nodes
 		}
 		InnerEdges { {  TargetIndex -1 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionBoolCall" ParticipantName "Smithy" CallbackName "HasAcceptedQuest" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue False bLongTermMemory True } }
-		Children { {  TargetIndex 3 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+		Children { {  TargetIndex 6 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
-	// 2
+	// 4
 	Node_Selector 
 	{
 		SelectorType "EDlgNodeSelectorType::DlgNodeSelectorFirst"
@@ -64,11 +99,17 @@ Node Nodes
 		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionBoolCall" ParticipantName "Smithy" CallbackName "HasAcceptedQuest" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue True bLongTermMemory True } }
 		Children
 		{
-			{  TargetIndex 4 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
-			{  TargetIndex 5 Text "" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
+			{  TargetIndex 7 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
+			{  TargetIndex 8 Text "" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
 		}
 	}
-	// 3
+	// 5
+	Node_End 
+	{
+		OwnerName "Smithy"
+		bCheckChildrenOnEvaluation False
+	}
+	// 6
 	Node_Speech 
 	{
 		Text ""
@@ -80,9 +121,9 @@ Node Nodes
 		VoiceSoundWave ""
 		VoiceDialogueWave ""
 		GenericData ""
-		Children { {  TargetIndex 6 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+		Children { {  TargetIndex 9 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
-	// 4
+	// 7
 	Node_SpeechSequence 
 	{
 		OwnerName "Smithy"
@@ -103,9 +144,9 @@ Node Nodes
 		InnerEdges { {  TargetIndex -1 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionBoolCall" ParticipantName "Smithy" CallbackName "HasFoundTools" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue True bLongTermMemory True } }
 		EnterEvents { {  ParticipantName "Smithy" EventType "EDlgEventType::DlgEventEvent" EventName "ReturnTools" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
-		Children { {  TargetIndex 7 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+		Children { {  TargetIndex 10 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
-	// 5
+	// 8
 	Node_Speech 
 	{
 		Text "Did you find the tools yet"
@@ -117,24 +158,24 @@ Node Nodes
 		VoiceSoundWave ""
 		VoiceDialogueWave ""
 		GenericData ""
-		Children { {  TargetIndex 7 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+		Children { {  TargetIndex 10 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
-	// 6
+	// 9
 	Node_Selector 
 	{
 		SelectorType "EDlgNodeSelectorType::DlgNodeSelectorFirst"
 		OwnerName "MyCharacterName"
 		bCheckChildrenOnEvaluation True
 		EnterEvents { {  ParticipantName "Smithy" EventType "EDlgEventType::DlgEventEvent" EventName "AskToBorrowTools" IntValue 0 FloatValue 0.0 NameValue "None" bDelta False bValue False } }
-		Children { {  TargetIndex 8 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+		Children { {  TargetIndex 11 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
-	// 7
+	// 10
 	Node_End 
 	{
 		OwnerName "Smithy"
 		bCheckChildrenOnEvaluation False
 	}
-	// 8
+	// 11
 	Node_SpeechSequence 
 	{
 		OwnerName "Smithy"
@@ -153,9 +194,9 @@ Node Nodes
 			}
 		}
 		InnerEdges { {  TargetIndex -1 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
-		Children { {  TargetIndex 9 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+		Children { {  TargetIndex 12 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
-	// 9
+	// 12
 	Node_End 
 	{
 		OwnerName "Smithy"

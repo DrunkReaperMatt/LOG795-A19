@@ -8,28 +8,31 @@
 #include "RosettaController.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class ROSETTA_API ARosettaController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
 
 public:
 	UFUNCTION(BlueprintImplementableEvent)
-	void ReloadInventory();
-	
+		void ReloadInventory();
+
 
 	UFUNCTION(BlueprintCallable, Category = "Utils")
-	bool AddItemToInventoryByID(FName ID);
+		bool AddItemToInventoryByID(FName ID);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	TArray<FInventoryItem> Inventory;
+		TArray<FInventoryItem> Inventory;
 
 	UFUNCTION(BlueprintCallable, Category = "Utils")
-	int CountItemByID(FName ID) const;
+		int CountItemByID(FName ID) const;
 
 	UFUNCTION(BlueprintCallable, Category = "Utils")
 		void RemoveItemFromInventoryByID(FName ID, int Count);
+
+	UFUNCTION(Blueprintable, BlueprintCallable, Category = "Utils")
+		bool HasItemInInventoryByID(FName ID);
 };

@@ -62,3 +62,14 @@ void ARosettaController::RemoveItemFromInventoryByID(FName ID, int Count)
 		}
 	}
 }
+
+bool ARosettaController::HasItemInInventoryByID(FName ID) {
+
+	for (FInventoryItem Item : Inventory) {
+		if (Item.ItemID == ID) {
+			return true;
+		}
+	}
+
+	return false;
+}
