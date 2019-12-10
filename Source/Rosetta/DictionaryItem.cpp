@@ -52,7 +52,7 @@ void ADictionaryItem::OnPickup()
 	Player->GetDictionary()->ReplaceEntry("qual", "seem");
 	Player->GetDictionary()->ReplaceEntry("ku", "to");
 	Player->GetDictionary()->ReplaceEntry("mul", "recall");
-	Player->GetDictionary()->ReplaceEntry("e", "a");
+	Player->GetDictionary()->ReplaceEntry("eu", "a");
 	Player->GetDictionary()->ReplaceEntry("vuruzu", "different");
 	Player->GetDictionary()->ReplaceEntry("zvarma", "number");
 	Player->GetDictionary()->ReplaceEntry("luis", "again");
