@@ -16,7 +16,7 @@ Node_Speech StartNode
 }
 DlgParticipantClasses
 {
-	{  ParticipantName "Jerry" ParticipantClass "/Game/Blueprints/NonPlayableCharacter_BP.NonPlayableCharacter_BP_C" }
+	{  ParticipantName "Jerry" ParticipantClass "/Game/Blueprints/NPCs/NPC_Base.NPC_Base_C" }
 	{  ParticipantName "MyCharacterName" ParticipantClass "/Game/Blueprints/MyRosettaCharacter.MyRosettaCharacter_C" }
 }
 Node Nodes
