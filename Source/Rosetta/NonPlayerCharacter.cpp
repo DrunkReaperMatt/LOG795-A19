@@ -8,11 +8,11 @@
 #include <stdio.h>
 #include "DlgManager.h"
 
-ANonPlayerCharacter::ANonPlayerCharacter()
-{
-	ConstructorHelpers::FClassFinder<UUserWidget> DWClassFinder(TEXT("/Game/UI/DialogueWidget"));
-	DWClass = DWClassFinder.Class;
-}
+//ANonPlayerCharacter::ANonPlayerCharacter()
+//{
+//	ConstructorHelpers::FClassFinder<UUserWidget> DWClassFinder(TEXT("/Game/UI/DialogueWidget"));
+//	DWClass = DWClassFinder.Class;
+//}
 
 void ANonPlayerCharacter::Interact() {
 	UE_LOG(LogTemp, Warning, TEXT("Intreact with %s"), *GetParticipantName_Implementation().ToString());
@@ -20,11 +20,25 @@ void ANonPlayerCharacter::Interact() {
 
 	player->StartDialogue(dialogueData, this);
 
-	if (!ensure(DWClass != nullptr)) return;
+	//if (!ensure(DWClass != nullptr)) return;
 
-	UDialogueWidget* DialogueWidget = CreateWidget<UDialogueWidget>(GetWorld(), DWClass);
-	if (!ensure(DialogueWidget != nullptr)) return;
-	DialogueWidget->AddToViewport();
+	//UDialogueWidget* DialogueWidget = CreateWidget<UDialogueWidget>(GetWorld(), DWClass);
+	//if (!ensure(DialogueWidget != nullptr)) return;
+		// Create Dictionary Widget and store it
+	if (wDialogue) {
+		DialogueWidget = CreateWidget<UUserWidget>(GetWorld(), wDialogue);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("wDialogue was null"));
+	}
+	if (DialogueWidget) {
+		DialogueWidget->AddToViewport();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("DialogueWidget was null"));
+	}
 }
 
 FText ANonPlayerCharacter::GetActionDescription()

@@ -143,9 +143,11 @@ private:
 	UPROPERTY()
 	class UDlgContext* ActiveContext = nullptr;
 
-	FString InputString;
 
 public:
+	UPROPERTY(BlueprintReadOnly)
+		FString InputString;
+
 	UFUNCTION(BlueprintCallable)
 		bool CompareResponse();
 

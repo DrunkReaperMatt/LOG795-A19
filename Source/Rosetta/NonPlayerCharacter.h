@@ -17,7 +17,7 @@ class ROSETTA_API ANonPlayerCharacter : public AInteractableActor, public IDlgDi
 {
 	GENERATED_BODY()
 
-		ANonPlayerCharacter();
+		//ANonPlayerCharacter();
 
 	UPROPERTY()
 		TSubclassOf<class UUserWidget> DWClass;
@@ -54,5 +54,10 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 		bool ShouldNPCGoAway;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widgets)
+		TSubclassOf<class UUserWidget> wDialogue;
+
+	UUserWidget* DialogueWidget;
 
 };
