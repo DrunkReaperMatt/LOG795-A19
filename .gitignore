@@ -73,3 +73,6 @@ Plugins/*/Intermediate/*
 # Cache files for the editor to use
 **/DerivedDataCache/*
 
+#Python Plugin
+!Plugins/UnrealEnginePython/Binaries
+!Plugins/UnrealEnginePython/ThirdParty/Python36/Lib
