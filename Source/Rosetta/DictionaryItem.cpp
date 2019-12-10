@@ -13,7 +13,7 @@ void ADictionaryItem::OnPickup()
 	Player->GetDictionary()->ReplaceEntry("Grany", "Hello");
 	Player->GetDictionary()->ReplaceEntry("jweeb", "there");
 	//Player->GetDictionary()->ReplaceEntry("olgada", "stranger");
-	Player->GetDictionary()->ReplaceEntry("A", "I");
+	Player->GetDictionary()->ReplaceEntry("Al", "I");
 	Player->GetDictionary()->ReplaceEntry("zu", "am");
 	Player->GetDictionary()->ReplaceEntry("nasee", "blind");
 	Player->GetDictionary()->ReplaceEntry("iko", "and");
@@ -57,5 +57,7 @@ void ADictionaryItem::OnPickup()
 	Player->GetDictionary()->ReplaceEntry("zvarma", "number");
 	Player->GetDictionary()->ReplaceEntry("luis", "again");
 	Player->GetDictionary()->ReplaceEntry("jibi", "pretty");
+	Player->GetDictionary()->ReplaceEntry("caza", "go");
+	Player->GetDictionary()->ReplaceEntry("koolio", "away");
 }
 

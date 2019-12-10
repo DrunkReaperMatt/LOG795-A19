@@ -16,4 +16,7 @@ class ROSETTA_API UMyBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 public:
 	UFUNCTION(BlueprintCallable, Category = "Unreal Python")
 		static FString ExecutePythonString(FString PythonCmd);
+public:
+	UFUNCTION(BlueprintCallable, Category = "Translation")
+		static FString GetInputTextTranslation(FString InputText, ARosettaCharacter* Player);
 };
